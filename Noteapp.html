@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  ng-app="ToDo">
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="./js/script.js"></script>
+   
+  </head>
+
+  <body>
+    
+    <div  class="todo-wrapper" ng-controller="ToDoController">
+      <div >
+<button class="clear-btn" ng-click="show()" type="button">Create New Note</button>
+<h2>You've got <span class="emphasis">{{getTotalTodos()}}</span> things to do</h2>
+</div>
+    <div  ng-show="myVar">
+
+        
+<form name="frm" ng-submit="addTodo()">
+
+    <textarea class="add-input"  name="todo" ng-model="newTodo"   ng-change="change()"  maxlength="240" placeholder="I need to...(max length:240)" cols="30" rows="10" required></textarea>
+  
+
+<button ng-disabled="frm.$invalid" class="add-btn" ><b>Add Note</b></button>
+
+</form>
+</div>
+  
+        <button class="clear-btn" ng-click="clearCompleted()" >Clear Completed</button>
+        <ul>
+           <li ng-repeat="todo in todos | reverse">
+               <input ng-model="todo.done" type="checkbox" /> 
+               <span ng-class="{'done': todo.done}" class="done-{{todo.done}}">{{ todo.title }}</span>
+           </li> 
+        </ul>
+ </div>
+  </body>
+
+</html>
